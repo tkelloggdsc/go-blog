@@ -1,0 +1,4 @@
+build:
+  desc: create application binary
+  cmds:
+    - go build

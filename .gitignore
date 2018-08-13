@@ -1,0 +1,4 @@
+vendor
+config.prod.toml
+go-blog
+
