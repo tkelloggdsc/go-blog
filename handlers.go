@@ -3,15 +3,14 @@ package main
 import (
 	"encoding/json"
 	"net/http"
+
+	"gopkg.in/mgo.v2/bson"
 )
 
-// PostIndexResponse - structure of post index
-type PostIndexResponse struct {
-	Posts []Post
-}
+// AllPostsEndpoint - return all posts
+func AllPostsEndpoint(w http.ResponseWriter, r *http.Request) {
+	defer r.Body.Close()
 
-// PostsIndex - return all posts
-func PostsIndex(w http.ResponseWriter, r *http.Request) {
 	var posts []Post
 	posts, err := dao.FindAllPosts()
 	if err != nil {
@@ -26,5 +25,31 @@ func PostsIndex(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(200)
+	w.Write(response)
+}
+
+// CreatePostEndpoint - save a new post
+func CreatePostEndpoint(w http.ResponseWriter, r *http.Request) {
+	defer r.Body.Close()
+
+	var post Post
+	if err := json.NewDecoder(r.Body).Decode(&post); err != nil {
+		handleError(err, InternalServiceError, w)
+		return
+	}
+
+	post.ID = bson.NewObjectId()
+	if err := dao.InsertPost(post); err != nil {
+		handleError(err, InternalServiceError, w)
+		return
+	}
+
+	response, err := json.Marshal(post)
+	if err != nil {
+		handleError(err, InternalServiceError, w)
+		return
+	}
+
+	w.WriteHeader(201)
 	w.Write(response)
 }

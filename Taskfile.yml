@@ -1,4 +1,16 @@
 build:
   desc: create application binary
   cmds:
-    - go build
+    - go build -o bin/app
+
+clean:
+  desc: removes application binaries
+  cmds:
+    - rm bin/*
+
+dev:
+  desc: run application binary in development
+  cmds:
+    - task build
+    - APP_ENV=dev ./bin/app
+
