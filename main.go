@@ -4,7 +4,9 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 )
 
@@ -27,12 +29,21 @@ func init() {
 func main() {
 	println("Server running on:" + config.ServerPort)
 
-	router := mux.NewRouter().StrictSlash(true)
-	router.Use(loggingMiddleware)
-	router.Use(jsonMiddleware)
+	router := mux.NewRouter()
 
-	router.HandleFunc("/api/posts", AllPostsEndpoint).Methods("GET")
-	router.HandleFunc("/api/posts", CreatePostEndpoint).Methods("POST")
+	api := router.PathPrefix("/api/v1/").Subrouter()
+	api.HandleFunc("/posts", AllPostsEndpoint).Methods("GET")
+	api.HandleFunc("/posts", CreatePostEndpoint).Methods("POST")
 
-	log.Fatal(http.ListenAndServe(config.ServerPort, router))
+	router.PathPrefix("/static").Handler(http.FileServer(http.Dir(config.StaticAssetsPath)))
+	router.PathPrefix("/").HandlerFunc(IndexHandler(config.StaticEntryPath))
+
+	server := &http.Server{
+		Handler:      handlers.LoggingHandler(os.Stdout, router),
+		Addr:         "127.0.0.1" + config.ServerPort,
+		WriteTimeout: 10 * time.Second,
+		ReadTimeout:  10 * time.Second,
+	}
+
+	log.Fatal(server.ListenAndServe())
 }

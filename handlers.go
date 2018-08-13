@@ -7,6 +7,15 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+// IndexHandler - serves client application
+func IndexHandler(entrypoint string) func(w http.ResponseWriter, r *http.Request) {
+	fn := func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, entrypoint)
+	}
+
+	return http.HandlerFunc(fn)
+}
+
 // AllPostsEndpoint - return all posts
 func AllPostsEndpoint(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()

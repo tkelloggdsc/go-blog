@@ -1,3 +1,5 @@
 Server="localhost"
 Database="go_blog"
 ServerPort=":8080"
+StaticAssetsPath="./go-blog-client/build/"
+StaticEntryPath="./go-blog-client/build/index.html"

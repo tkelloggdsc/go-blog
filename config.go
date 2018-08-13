@@ -8,9 +8,11 @@ import (
 
 // Config - represents env vars
 type Config struct {
-	Server     string
-	Database   string
-	ServerPort string
+	Server           string
+	Database         string
+	ServerPort       string
+	StaticAssetsPath string
+	StaticEntryPath  string
 }
 
 // Read and parse the config file
