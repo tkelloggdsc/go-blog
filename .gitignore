@@ -1,4 +1,4 @@
 vendor
 config.prod.toml
 bin
-
+.DS_Store

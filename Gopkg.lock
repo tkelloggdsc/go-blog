@@ -2,100 +2,38 @@
 
 
 [[projects]]
-  branch = "master"
-  name = "github.com/buger/jsonparser"
+  name = "github.com/BurntSushi/toml"
   packages = ["."]
-  revision = "f4dd9f5a6b441265aefc1d44872a6f8c10f42b37"
+  revision = "b26d9c308763d68093482582cea63d69be07a0f0"
+  version = "v0.3.0"
 
 [[projects]]
-  name = "github.com/go-stack/stack"
+  name = "github.com/gorilla/context"
   packages = ["."]
-  revision = "259ab82a6cad3992b4e21ff5cac294ccb06474bc"
-  version = "v1.7.0"
+  revision = "08b5f424b9271eedf6f9f0ce86cb9396ed337a42"
+  version = "v1.1.1"
 
 [[projects]]
-  branch = "master"
-  name = "github.com/golang/snappy"
+  name = "github.com/gorilla/mux"
   packages = ["."]
-  revision = "2e65f85255dbc3072edf28d6b5b8efc472979f5a"
+  revision = "e3702bed27f0d39777b0b37b664b6280e8ef8fbf"
+  version = "v1.6.2"
 
 [[projects]]
-  name = "github.com/mongodb/mongo-go-driver"
+  branch = "v2"
+  name = "gopkg.in/mgo.v2"
   packages = [
+    ".",
     "bson",
-    "bson/builder",
-    "bson/decimal",
-    "bson/elements",
-    "bson/objectid",
-    "bson/parser",
-    "bson/parser/ast",
-    "core/address",
-    "core/auth",
-    "core/auth/internal/gssapi",
-    "core/command",
-    "core/compressor",
-    "core/connection",
-    "core/connstring",
-    "core/description",
-    "core/dispatch",
-    "core/event",
-    "core/option",
-    "core/readconcern",
-    "core/readpref",
-    "core/result",
-    "core/session",
-    "core/tag",
-    "core/topology",
-    "core/uuid",
-    "core/version",
-    "core/wiremessage",
-    "core/writeconcern",
-    "internal",
-    "mongo",
-    "mongo/aggregateopt",
-    "mongo/changestreamopt",
-    "mongo/clientopt",
-    "mongo/collectionopt",
-    "mongo/countopt",
-    "mongo/dbopt",
-    "mongo/deleteopt",
-    "mongo/distinctopt",
-    "mongo/dropcollopt",
-    "mongo/findopt",
-    "mongo/indexopt",
-    "mongo/insertopt",
-    "mongo/listcollectionopt",
-    "mongo/listdbopt",
-    "mongo/mongoopt",
-    "mongo/replaceopt",
-    "mongo/runcmdopt",
-    "mongo/sessionopt",
-    "mongo/updateopt"
+    "internal/json",
+    "internal/sasl",
+    "internal/scram"
   ]
-  revision = "9b26cbb1a61aaedd6160e99c41fa514b04a1a245"
-  version = "v0.0.11"
-
-[[projects]]
-  branch = "master"
-  name = "golang.org/x/crypto"
-  packages = ["pbkdf2"]
-  revision = "de0752318171da717af4ce24d0a2e8626afaeb11"
-
-[[projects]]
-  branch = "master"
-  name = "golang.org/x/net"
-  packages = ["context"]
-  revision = "c39426892332e1bb5ec0a434a079bf82f5d30c54"
-
-[[projects]]
-  branch = "master"
-  name = "golang.org/x/sync"
-  packages = ["semaphore"]
-  revision = "1d60e4601c6fd243af51cc01ddf169918a5407ca"
+  revision = "9856a29383ce1c59f308dd1cf0363a79b5bef6b5"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "78fcf722aec6ae5037f240985927490bcd53926750c2e8dee8a5b9a840735421"
+  inputs-digest = "a6c731289d0d1f993631c2e23ae1a17f880e50f592f387667883a5db91304de4"
   solver-name = "gps-cdcl"
   solver-version = 1
